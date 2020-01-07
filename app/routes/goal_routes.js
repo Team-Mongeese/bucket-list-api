@@ -42,7 +42,6 @@ router.get('/goals', requireToken, (req, res, next) => {
     // if an error occurs, pass it to the handler
     .catch(next)
 })
-
 // SHOW
 // GET /goals/5a7db6c74d55bc51bdf39793
 router.get('/goals/:id', requireToken, (req, res, next) => {
