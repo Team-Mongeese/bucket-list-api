@@ -35,7 +35,8 @@ router.get('/goals', requireToken, (req, res, next) => {
       // `goals` will be an array of Mongoose documents
       // we want to convert each one to a POJO, so we use `.map` to
       // apply `.toObject` to each one
-      return goals.map(goal => goal.toObject())
+      // using non type equals this is unsafe and should not be done but works for now
+      return goals.filter(goal => req.user.id == goal.owner).map(goal => goal.toObject())
     })
     // respond with status 200 and JSON of the goals
     .then(goals => res.status(200).json({ goals: goals }))
